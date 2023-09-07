@@ -1,4 +1,4 @@
-namespace BookApp;
+namespace BookApp.Models;
 
 public class WeatherForecast
 {

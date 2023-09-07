@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookApp.Controllers;
 
