@@ -30,6 +30,15 @@ app.UseStaticFiles();
 app.UseRouting();
 
 
+app.UseCors(builder =>
+{
+    builder
+        .AllowAnyOrigin() // Mo¿esz dostosowaæ to do swoich potrzeb
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+});
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
@@ -39,3 +48,4 @@ app.MapFallbackToFile("index.html");
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();
+

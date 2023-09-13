@@ -51,9 +51,31 @@ export class Books extends Component {
     }
 
     async populateBookData() {
-        const response = await fetch('/Books');
-        console.log(this.state);
-        const data = await response.json();
-        this.setState({ books: data, loading: false });
+    //    const response = await fetch('/Books');
+    //    console.log(response);
+    //    const data = await response.json();
+    //    this.setState({ books: data, loading: false });
+    //}
+        try {
+            const response = await fetch('https://localhost:7207/books');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.text(); // Pobierz dane jako tekst
+            // Sprawdź, czy dane nie są puste
+            if (!data) {
+                throw new Error("Dane JSON są puste");
+            }
+
+            // Sparsuj dane JSON
+            const jsonData = JSON.parse(data);
+            this.setState({ books: jsonData, loading: false });
+            console.log(this.state);
+        } catch (error) {
+            console.error('Błąd pobierania danych: ', error);
+            this.setState({ loading: false }); // Ustawienie loading na false w przypadku błędu
+           
+        }
     }
 }
